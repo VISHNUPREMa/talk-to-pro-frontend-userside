@@ -49,7 +49,6 @@ function Routers(){
           <Route path="/slotbooking" element={<Dashboard><Booking/></Dashboard>} />
           <Route path="/proconsole" element={<Dashboard><Console/></Dashboard>} />
           <Route path="/allocateslot" element={<Dashboard><ServiceProviderBooking/></Dashboard>} />
-         
           <Route path="/booking" element={<Dashboard><UserBooking/></Dashboard>} />
           <Route path="/transaction" element={<Dashboard><UserTransactions/></Dashboard>} />
            <Route path="/videocall" element={<VideoCall/>} /> 
