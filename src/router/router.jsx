@@ -13,7 +13,7 @@ import NewPasswordPage from "../pages/user/newPassword";
 import Booking from "../pages/user/slotbooking";
 import Console from "../pages/serviceprovider/console";
 import ServiceProviderBooking from "../pages/user/service-provider-components.jsx/allocateSlot";
-import PayPalIntegration from "../pages/user/usercomponents/paypalComponent";
+
 import { AuthProvider } from '../pages/user/usercomponents/jwtAuthContext';
 import UserBooking from "../pages/user/usercomponents/userBooking";
 import UserTransactions from "../pages/user/usercomponents/userTransactions";
@@ -49,7 +49,7 @@ function Routers(){
           <Route path="/slotbooking" element={<Dashboard><Booking/></Dashboard>} />
           <Route path="/proconsole" element={<Dashboard><Console/></Dashboard>} />
           <Route path="/allocateslot" element={<Dashboard><ServiceProviderBooking/></Dashboard>} />
-          <Route path="/paypal" element={<Dashboard><PayPalIntegration/></Dashboard>} />
+         
           <Route path="/booking" element={<Dashboard><UserBooking/></Dashboard>} />
           <Route path="/transaction" element={<Dashboard><UserTransactions/></Dashboard>} />
            <Route path="/videocall" element={<VideoCall/>} /> 
