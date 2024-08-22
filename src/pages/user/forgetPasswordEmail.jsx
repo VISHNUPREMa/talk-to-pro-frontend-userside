@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axiosInstance from '../../instance/axiosInstance';
-import { BACKEND_SERVER } from '../../../../admin/src/secret/secret';
+import { BACKEND_SERVER } from '../../secrets/secret';
 import { useEmail } from '../contexts/userEmailContext'; 
 
 function ForgetPasswordEmail() {
