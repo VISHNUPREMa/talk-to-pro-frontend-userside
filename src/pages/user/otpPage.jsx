@@ -94,15 +94,7 @@ function OtpPage() {
     } catch (error) {
       alert("error");
       console.log(error);
-      // console.error("Error verifying OTP:", error);
-      // toast.error(error.response.data.error, {
-      //   position: "top-right",
-      //   autoClose: 2000,
-      //   hideProgressBar: true,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      // });
+ 
     }
   };
 

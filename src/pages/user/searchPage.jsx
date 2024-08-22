@@ -20,7 +20,7 @@ function SearchPage() {
           <SearchSidebar />
         </div>
         <div style={{ marginLeft: '130px' }}>
-          <CardList showMore={false} /> {/* Set showMore to false */}
+          <CardList showMore={false} /> 
         </div>
       </div>
     </>
