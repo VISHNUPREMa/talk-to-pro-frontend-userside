@@ -4,11 +4,14 @@ import '../../style/slotbooking.css';
 import ProfileContext from './context/profileContext';
 import axiosInstance from '../../instance/axiosInstance';
 import { BACKEND_SERVER } from '../../secrets/secret.js';
-import PayPalIntegration from './usercomponents/paypalComponent';
+// import PayPalIntegration from './usercomponents/paypalComponent';
 import Navbar from './usercomponents/navbar';
 import { useData } from '../contexts/userDataContext.jsx';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content'
 
 const Booking = () => {
+  const MySwal = withReactContent(Swal);
   const { proProfile } = useContext(ProfileContext);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
@@ -16,7 +19,7 @@ const Booking = () => {
   const [showPayPal, setShowPayPal] = useState(false);
   const [amount, setAmount] = useState(0);
   const { user } = useData();
-
+  const proId = proProfile.userid;
   const dates = Array.from({ length: 7 }, (_, i) => addDays(selectedDate, i));
 
   const timeSlots = [
@@ -27,7 +30,7 @@ const Booking = () => {
   useEffect(() => {
     const fetchAvailableSlots = async () => {
       try {
-        const proId = proProfile.userid;
+       
         const response = await axiosInstance.post(`${BACKEND_SERVER}/getavailableslot`, { id: proId });
         if (response.data.success) {
           setFetchedSlots(response.data.data);
@@ -65,8 +68,46 @@ const Booking = () => {
   const handlePayNow = async (e) => {
     e.preventDefault();
     try {
-      if (amount === 0) {
-        setShowPayPal(false);
+      if (amount > 0) {
+        const orderResponse = await axiosInstance.post(`${BACKEND_SERVER}/createOrder`, { amount });
+        const { id, currency } = orderResponse.data;
+  
+        const options = {
+          key: import.meta.env.RAZORPAY_KEY_ID,
+          amount: amount * 100, // amount in paise
+          currency: currency,
+          name: 'Talk To Pro',
+          description: 'Book slot',
+          order_id: id,
+          handler: async (response) => {
+            const paymentData = {
+              orderId: response.razorpay_order_id,
+              paymentId: response.razorpay_payment_id,
+              signature: response.razorpay_signature,
+              amount: amount,
+              id: user.userid,
+            };
+  
+            const verifyResponse = await axiosInstance.post(`${BACKEND_SERVER}/verifyPayment`, paymentData);
+            if (verifyResponse.data.message === 'Payment verified successfully') {
+              alert("success");
+  handlePaymentSuccess() 
+            } else {
+              alert('Payment verification failed!');
+            }
+          },
+          prefill: {
+            name: user.name,
+            email: user.email,
+          },
+          theme: {
+            color: '#0e3a4a',
+          },
+        };
+  
+        const rzp = new Razorpay(options);
+        rzp.open();
+  
       } else {
         setShowPayPal(true);
       }
@@ -74,6 +115,56 @@ const Booking = () => {
       console.error("Error handling payment:", error);
     }
   };
+  
+  
+  const handlePaymentSuccess = async () => {
+    const userid = user.userid;
+    try {
+      const response = await axiosInstance.post(`${BACKEND_SERVER}/bookslot`, {
+        userid,
+        amount,
+        selectedDate,
+        selectedTimeSlot,
+        proId,
+      });
+
+      if (response.data) {
+        console.log(response.data);
+        MySwal.fire({
+          title: 'Booked',
+          text: 'The slot was booked successfully.',
+          icon: 'success',
+          customClass: {
+            popup: 'swal2-popup',
+            title: 'swal2-title',
+            content: 'swal2-content',
+            confirmButton: 'swal2-confirm',
+          },
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            navigate("/")
+          }
+        })
+      }
+    } catch (error) {
+      console.error('Error during booking:', error);
+      MySwal.fire({
+        title: 'Error',
+        text: 'An error occurred during the booking. Please try again.',
+        icon: 'error',
+        customClass: {
+          popup: 'swal2-popup',
+          title: 'swal2-title',
+          content: 'swal2-content',
+          confirmButton: 'swal2-confirm',
+        },
+      });
+    }
+  }
+
+
+
 
   const getStatusForTimeSlot = (timeSlot) => {
     const dateString = selectedDate.toISOString().split('T')[0];
@@ -88,20 +179,23 @@ const Booking = () => {
   };
 
   const toggleSelectedTimeSlot = (slot) => {
-    if (selectedTimeSlot === slot) {
-      setSelectedTimeSlot(null);
-    } else {
-      setSelectedTimeSlot(slot);
-      const dateString = selectedDate.toISOString().split('T')[0];
-      const dateSlot = fetchedSlots.find(slot => slot.date.startsWith(dateString));
-      if (dateSlot) {
-        const foundSlot = dateSlot.slots.find(s => s.time === slot);
-        if (foundSlot) {
-          setAmount(foundSlot.amount);
+    if (getStatusForTimeSlot(slot) === 'Available' || getStatusForTimeSlot(slot) === 'Pending' || getStatusForTimeSlot(slot) === 'Cancelled') {
+      if (selectedTimeSlot === slot) {
+        setSelectedTimeSlot(null);
+      } else {
+        setSelectedTimeSlot(slot);
+        const dateString = selectedDate.toISOString().split('T')[0];
+        const dateSlot = fetchedSlots.find(slot => slot.date.startsWith(dateString));
+        if (dateSlot) {
+          const foundSlot = dateSlot.slots.find(s => s.time === slot);
+          if (foundSlot) {
+            setAmount(foundSlot.amount);
+          }
         }
       }
     }
   };
+  
 
   const handleSubscription = async () => {
     try {
@@ -222,21 +316,14 @@ const Booking = () => {
             </div>
 
             <div id="pay-btn">
-              {showPayPal ? (
-                <PayPalIntegration
-                  amount={amount}
-                  selectedDate={selectedDate}
-                  selectedTimeSlot={selectedTimeSlot}
-                  proId={proProfile.userid}
-                />
-              ) : (
+            
                 <button
                   onClick={handlePayNow}
                   className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded w-full"
                 >
                   Pay Now
                 </button>
-              )}
+              
             </div>
           </div>
         </div>
