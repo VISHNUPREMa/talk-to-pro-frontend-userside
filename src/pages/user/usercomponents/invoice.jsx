@@ -54,7 +54,7 @@ const Invoice = () => {
     
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h3 className="text-xl font-bold text-blue-600">INVOICE</h3>
+          <h3 className="text-xl font-bold text-blue-600">INVOICE FOR BOOKING</h3>
           <p className="text-sm text-gray-500">#258942</p>
         </div>
         <div className="text-center mb-8">
