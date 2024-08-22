@@ -1,0 +1,96 @@
+.wrapper {
+    position: fixed;
+    bottom: 20px; /* Adjust as needed */
+    right: 100px; /* Adjust as needed */
+    z-index: 1001; /* Ensure it appears above other content */
+  }
+  
+  .link_wrapper {
+    position: relative;
+  }
+  
+  .special-link {
+    display: block;
+    width: 250px;
+    height: 50px;
+    line-height: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    background: rgba(240, 248, 255, 0.219);
+    text-align: center;
+    color: #2c2929;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 3px solid #333;
+    transition: all .35s;
+    cursor: pointer;
+  }
+  
+  .icon {
+    width: 50px;
+    height: 50px;
+    border: 3px solid transparent;
+    position: absolute;
+    transform: rotate(45deg);
+    right: 0;
+    top: 0;
+    z-index: -1;
+    transition: all .35s;
+  }
+  
+  .icon svg {
+    width: 30px;
+    position: absolute;
+    top: calc(50% - 15px);
+    left: calc(50% - 15px);
+    transform: rotate(-45deg);
+    fill: #2ecc71;
+    transition: all .35s;
+  }
+  
+  .special-link:hover {
+    width: 200px;
+    border: 3px solid #2ecc71;
+    background: transparent;
+    color: #2ecc71;
+  }
+  
+  .special-link:hover + .icon {
+    border: 3px solid #2ecc71;
+    right: -25%;
+  }
+
+  .pagination-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  .pagination-card button {
+    background-color: #007bff; /* Blue background */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination-card button:hover:not([disabled]) {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .pagination-card button[disabled] {
+    background-color: #cccccc; /* Grey background for disabled buttons */
+    cursor: not-allowed;
+  }
+  
+  .pagination-card span {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0 10px;
+  }
+  
+  

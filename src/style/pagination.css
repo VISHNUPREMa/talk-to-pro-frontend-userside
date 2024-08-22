@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+
+
+
+
+.pagination-transaction {
+  width: 100%;
+  max-width: 490px;
+  margin: 20px auto;
+  background: #e0e0e0;
+  border-radius: 50px;
+  box-shadow: inset 5px 5px 1px #717171, inset -5px -5px 1px #ffffff;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 2em;
+}
+
+#ul {
+  margin: 0;
+  text-align: center;
+  padding: 0;
+}
+
+#ul li {
+  display: inline-block;
+  list-style-type: none;
+  margin-left: 5px;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  line-height: 35px;
+  align-self: center;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+#ul li:hover,
+button:hover {
+  transform: scale(0.96);
+}
+
+.btn-transaction {
+  line-height: 35px;
+  width: 75px;
+  border: 0;
+  background-color: hsla(220, 15%, 58%, 0.1);
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+#ul .active {
+    background: linear-gradient(90deg, #b8860b, #daa520); /* DarkGoldenRod and GoldenRod colors */
+    color: #fff;
+    font-weight: 600;
+  }
+  
+
+.btn-transaction:disabled,
+.btn-transaction[disabled] {
+  cursor: not-allowed;
+  background-color: rgba(0, 0, 0, 0.07);
+}
+
+@media screen and (max-width: 667px) {
+  .pagination {
+    padding: 1em 1.2em;
+  }
+  .btn-transaction {
+    width: 60px;
+  }
+ #ul li:last-child {
+    display: none;
+  }
+}

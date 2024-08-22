@@ -1,0 +1,82 @@
+/* slotbooking.css */
+#allocate-div{
+    margin-top: 4%;
+}
+#date-div {
+    box-shadow: 0 5px 8px rgba(44, 43, 52, 0.2);
+    padding: 1px;
+    border-radius: 10px;
+    color: #2c2e39;
+  }
+  
+  #date-div button.selected {
+    background-color: #bea309; /* Golden color */
+    color: white;
+  }
+  
+  #date-div button:hover {
+    background-color: #bea309; /* Golden color */
+    color: white;
+  }
+  
+  #pay-btn button {
+    background-color: #bea309;
+    border-width: 2px;
+    border-color: #282A36;
+    border-radius: 15px;
+  }
+  
+  #legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  #legend .flex {
+    display: flex;
+    align-items: center;
+  }
+  
+  #legend .flex div {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border-radius: 4px;
+  }
+  
+  #legend .flex .bg-gray-200 {
+    background-color: #4c4e52;
+  }
+  
+  #legend .flex .bg-white {
+    background-color: #ffffff;
+    border: 2px solid #101011;
+  }
+  
+  #legend .flex .bg-green-500 {
+    background-color: #3fcb9c;
+  }
+  
+  #legend .flex .bg-red-500 {
+    background-color: #e28888;
+  }
+  /* Add these styles to your slotbooking.css or any other relevant CSS file */
+.swal2-popup {
+  background-color: #282A36 !important;
+}
+
+.swal2-title, .swal2-content, .swal2-confirm, .swal2-cancel {
+  color: #bea309 !important;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #bea309 !important;
+  border: none;
+  color: #282A36 !important;
+}
+
+.swal2-styled.swal2-cancel {
+  background-color: #282A36 !important;
+  border: 1px solid #bea309 !important;
+  color: #bea309 !important;
+}

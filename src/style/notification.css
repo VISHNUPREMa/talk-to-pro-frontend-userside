@@ -1,0 +1,20 @@
+#messages {
+    animation: 1s fadeIn;
+    animation-fill-mode: forwards;
+    visibility: hidden;
+  }
+  
+  @keyframes fadeIn {
+    50% {
+      visibility: hidden;
+    }
+    60% {
+      visibility: visible;
+      opacity: 0.5;
+    }
+    100% {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+  

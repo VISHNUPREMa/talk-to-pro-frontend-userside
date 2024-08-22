@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .dashboard-console {
+    display: flex;
+
+    min-width: 70vw;
+    height: 70vh;
+    border-radius: 10px;
+  }
+  
+  .sidebar-1-console {
+    width: 200px;
+    background-color: white;
+    box-shadow: 5px 4px 8px 5px rgba(0, 58, 116, 0.3), 0 6px 20px 0 rgba(0, 58, 116, 0.29);
+    padding: 10px;
+  }
+  
+  
+  .menu-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu-item {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #d4a800;
+    color: white;
+    font-weight: bold;
+    text-align: left;
+
+  }
+  
+  .menu-item:hover {
+    background-color: #c39300;
+    cursor: pointer;
+  }
+  
+  .main-content-console {
+    margin-top: 0; 
+    max-height: 90vh;
+    margin-left: 30px;
+    padding: 20px;
+    background-color: #f8f8f8;
+  }
+  
+  .profile-analytics {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+  }
+  
+  .allow-slot-1, .analytics-summary, .provider-insider {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin-right: 20px;
+    text-align: center;
+  }
+  
+  .allow-slot:last-child, .analytics-summary:last-child {
+    margin-right: 0;
+  }
+  
+  .allow-slot-button {
+    background-color: #d4a800;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .allow-slot-button:hover {
+    background-color: #c39300;
+  }
+  
+  .analytics-summary h2, .provider-insider h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .analytics-summary p, .provider-insider p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .insider-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .insider-content p {
+    margin-left: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard {
+      flex-direction: column;
+    }
+  
+    .profile-analytics {
+      flex-direction: column;
+    }
+  
+    .allow-slot, .analytics-summary, .provider-insider {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  
+    .allow-slot:last-child, .analytics-summary:last-child {
+      margin-bottom: 0;
+    }
+  }
+  

@@ -1,0 +1,23 @@
+.navbar-fixed {
+    position: fixed;
+    width: 100%;
+    top: 0;
+
+  }
+  
+  .main-content {
+    display: flex;
+    margin-top: 100px; /* Adjust according to your Navbar height */
+    padding: 20px;
+    height: calc(100vh - 60px); /* Full height minus the navbar height */
+    overflow: hidden; /* Prevent content overflow */
+  }
+  
+  
+  
+  .card-list {
+    flex: 1; /* Takes up the remaining space */
+    height: 100%;
+    overflow-y: auto; /* Scrollable if content exceeds height */
+  }
+  

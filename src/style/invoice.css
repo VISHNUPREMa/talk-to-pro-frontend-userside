@@ -1,0 +1,17 @@
+@media print {
+    #print-btn,
+    .navbar-invoice,
+    #pdf-btn,.navbar-invoice {
+      display: none;
+    }
+  }
+
+  
+  .navbar-invoice {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  
+  }
+  

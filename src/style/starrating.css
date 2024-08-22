@@ -1,0 +1,42 @@
+.star-rating {
+    display: flex;
+
+    gap: 10px; /* Optional: Adjusts the spacing between stars */
+  }
+  
+  .star {
+    cursor: pointer;
+    transition: color 200ms;
+  }
+  
+  .rating-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 150px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  #close-rating {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer; /* Optional: to change the cursor to a pointer when hovering over the icon */
+  }
+
+  #rate-btn{
+    background-color: #c39300;
+    position: absolute;
+    bottom: 35px;
+    right: 200px;
+    cursor: pointer; 
+    padding: 10px;
+    border-radius: 5px;
+    
+  }
+
+  
+  
