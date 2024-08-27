@@ -208,6 +208,8 @@ socket.on('review',()=>{
       await pc.current.setRemoteDescription(new RTCSessionDescription(offer));
       const answer = await pc.current.createAnswer();
       await pc.current.setLocalDescription(answer);
+      console.log("room : ",room);
+      
       socket.emit("calling", { room, data: { type: "answer", sdp: answer.sdp } });
     } catch (e) {
       console.log(e);
@@ -283,7 +285,10 @@ socket.on('review',()=>{
 async function startB() {
   
   try {
+
     const id = user.userid;
+    console.log("id : ",id);
+    
     const response = await axiosInstance.post(`${BACKEND_SERVER}/call`, { id });
     if (response.data.success) {
       console.log("response : ",response);
@@ -298,6 +303,10 @@ async function startB() {
         audio: { echoCancellation: true },
       });
       localVideo.current.srcObject = localStream.current;
+      console.log("room : ",room);
+      console.log("id : ",id);
+      console.log("response.data.data.id : ",response.data.data.id);
+      
       socket.emit("call-request", { room, from: id, to: response.data.data.id });
     }else{
       toast.error(response.data.message, {
