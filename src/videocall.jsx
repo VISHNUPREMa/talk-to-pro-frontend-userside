@@ -16,7 +16,7 @@ import { useLocation } from 'react-router-dom';
 
 
 
-const socket = io("http://localhost:3000", { transports: ["websocket"] });
+const socket = io("https://www.talktopro.online", { transports: ["websocket"] });
 
 const configuration = {
   iceServers: [
