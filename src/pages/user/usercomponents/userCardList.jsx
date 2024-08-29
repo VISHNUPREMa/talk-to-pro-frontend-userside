@@ -77,7 +77,7 @@ export function CardList({ showMore = true }) {
         )}
       </div>
 
-      {!showMore && (
+      {!showMore || profiles.length > 8 && (
         <div className="pagination-card">
           <button
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}

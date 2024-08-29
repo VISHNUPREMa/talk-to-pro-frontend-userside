@@ -13,8 +13,8 @@ const UserProfile = () => {
   const { user } = useData();
   const userid = user.userid;
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
+    username: user.username,
+    email: user.email,
     profession: '',
     domain: '',
     experience: '',
@@ -38,36 +38,38 @@ const UserProfile = () => {
       try {
         const response = await axiosInstance.post(`${BACKEND_SERVER}/accountdetails`, { userid });
         if (response.data.success) {
-          const datas = response.data.data;
-          datas.forEach((data) => {
+          const accountDetails = response.data.data;
+          accountDetails.forEach((data) => {
             const { username, email, isServiceProvider } = data;
   
-            if (isServiceProvider) {
-              const { profession, domain, experience, languages, description, followedByCount, profilepic,linkedinUrl } = data.professionalDetails;
-              const fetchedFormData = {
-                username: username,
-                email: email,
-                profession: profession,
-                domain: domain.join(" "),
-                experience: experience,
-                languages: languages.join(" "),
-                description: description,
-                followedByCount: followedByCount,
-                profilePic: profilepic,
-                linkedinUrl:linkedinUrl
-              };
-              setFormData(fetchedFormData);
-              setInitialFormData(fetchedFormData); // Store the initial data
-              setPreviewUrl(profilepic);
-            }
+            const fetchedFormData = {
+              username,
+              email,
+              ...(isServiceProvider ? {
+                profession: data.professionalDetails.profession,
+                domain: data.professionalDetails.domain.join(" "),
+                experience: data.professionalDetails.experience,
+                languages: data.professionalDetails.languages.join(" "),
+                description: data.professionalDetails.description,
+                followedByCount: data.professionalDetails.followedByCount,
+                profilePic: data.professionalDetails.profilepic,
+                linkedinUrl: data.professionalDetails.linkedinUrl
+              } : {})
+            };
+  
+            setFormData(fetchedFormData);
+            setInitialFormData(fetchedFormData); // Store the initial data
+            if (isServiceProvider) setPreviewUrl(data.professionalDetails.profilepic);
           });
         }
       } catch (error) {
         console.error("Error fetching account details:", error);
       }
     };
+  
     fetchAccountDetails();
   }, [userid]);
+  
   
 
   const handleChange = (e) => {
@@ -264,6 +266,8 @@ const UserProfile = () => {
 
   const handleuserDetail = async() =>{
     try {
+      console.log("form data : ",formData);
+      
       if ((JSON.stringify(formData.username) !== JSON.stringify(initialFormData.username)) ||
       (JSON.stringify(formData.email) !== JSON.stringify(initialFormData.email)))
  {
@@ -511,14 +515,11 @@ const { profession: pro, domain: dom, experience: exp, languages: lan } = initia
             <div className="flex flex-col space-y-4">
               {previewUrl && (
                 <div className="mt-4">
-   <img 
-  src={previewUrl.startsWith('data:') ? previewUrl : `${BACKEND_SERVER}/PUBLIC/${previewUrl}`} 
-  alt="Profile Preview" 
-  className="w-32 h-32 object-cover rounded-full" 
-/>
-
-
-
+                <img 
+                 src={previewUrl.startsWith('data:') ? previewUrl : `${BACKEND_SERVER}/PUBLIC/${previewUrl}`} 
+                 alt="Profile Preview" 
+                 className="w-32 h-32 object-cover rounded-full" 
+                 />
                 </div>
               )}
               <div className="flex flex-col space-y-4">

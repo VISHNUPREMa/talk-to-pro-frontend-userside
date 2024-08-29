@@ -72,7 +72,7 @@ const SearchSidebar = () => {
       value="4" 
       onChange={handleCheckboxChange} 
     />
-    4 Stars & Up
+    4 Stars & Above
   </label>
   <label>
     <input 
@@ -81,7 +81,7 @@ const SearchSidebar = () => {
       value="3" 
       onChange={handleCheckboxChange} 
     />
-    3 Stars & Up
+    3 Stars & Above
   </label>
   <label>
     <input 
@@ -90,7 +90,7 @@ const SearchSidebar = () => {
       value="2" 
       onChange={handleCheckboxChange} 
     />
-    2 Stars & Up
+    2 Stars & Above
   </label>
 </div>
 
