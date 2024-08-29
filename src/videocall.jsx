@@ -20,7 +20,7 @@ const socket = io("https://www.talktopro.online", { transports: ["websocket"] })
 
 const configuration = {
   iceServers: [
-    { urls: ["stun:stun1.l.google.com:19302", "stun:stun2.l.google.com:19302"] },
+    { urls: ["turn:turn.talktopro.online:3478"] },
   ],
   iceCandidatePoolSize: 10,
 };
