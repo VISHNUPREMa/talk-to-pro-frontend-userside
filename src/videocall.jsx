@@ -20,12 +20,12 @@ const socket = io("https://www.talktopro.online", { transports: ["websocket"] })
 
 const configuration = {
   iceServers: [
-    {
-      urls: "turn:turn.anonymous10.cloud:3478",
-      username: "user",
-      credential: "pass",
+    { urls: "turn:turn.talktopro.online:3478" ,
+      username:"vishnu",
+      credential: "123",
     },
   ],
+  iceCandidatePoolSize: 10,
 };
 
 
