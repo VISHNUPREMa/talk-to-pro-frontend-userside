@@ -17,16 +17,20 @@ import { useLocation } from 'react-router-dom';
 
 
 const socket = io("https://www.talktopro.online", { transports: ["websocket"] });
-
 const configuration = {
   iceServers: [
-    { urls: "turn:turn.talktopro.online:3478" ,
-      username:"vishnu",
+    {
+      urls: "stun:stun.l.google.com:19302", 
+    },
+    { 
+      urls: "turn:turn.talktopro.online:3478", 
+      username: "vishnu", 
       credential: "123",
     },
   ],
   iceCandidatePoolSize: 10,
 };
+
 
 
 
