@@ -127,20 +127,13 @@ function Login() {
       const response = await axiosInstance.post(`${BACKEND_SERVER}/login`, { email, password });
       console.log("response : ",response);
       if (response.data.success) {
-        console.log(response);
-        alert("enter")
         console.log("response : ",response.data.data);
         const { accessToken, refreshToken, userInfo } = response.data.data;
         console.log([accessToken, refreshToken, userInfo ]);
         document.cookie = `accessToken=${accessToken}; path=/`;
-        console.log("a");
         localStorage.setItem('refreshToken', refreshToken);
-        console.log("b");
         setGlobalUser(userInfo);
-        console.log("c");
         navigate('/');       
-        console.log("d");     
-       
       }else{
         console.log("not entered");
         toast.error(response?.data?.message || 'An error occurred during signup.', {

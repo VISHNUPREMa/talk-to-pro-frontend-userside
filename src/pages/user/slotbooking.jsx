@@ -90,7 +90,6 @@ const Booking = () => {
   
             const verifyResponse = await axiosInstance.post(`${BACKEND_SERVER}/verifyPayment`, paymentData);
             if (verifyResponse.data.message === 'Payment verified successfully') {
-              alert("success");
   handlePaymentSuccess() 
             } else {
               alert('Payment verification failed!');
