@@ -18,7 +18,7 @@ export function ProfileCard() {
   const { proProfile } = useContext(ProfileContext);
   const data = proProfile;
   const userId = data.userid;
-  const proId = user.userid;
+  const proId = user?.userid;
 
   const [alreadyFollowed, setAlreadyFollowed] = useState(false);
   const [avgReview, setAvgReview] = useState(0);
