@@ -80,3 +80,10 @@
   border: 1px solid #bea309 !important;
   color: #bea309 !important;
 }
+
+#save-btn{
+  background-color: #003A74;
+  color: white;
+  background: linear-gradient(-90deg, #003A74, #006AD5);
+  border-radius: 3px;
+}

@@ -395,7 +395,7 @@ const ServiceProviderBooking = () => {
           </div>
   
           <div id="save-btn">
-            <button className="bg-yellow-500 text-white py-3 px-6 rounded text-lg" onClick={saveAvailableSlots}>Save Slots</button>
+            <button id="save-btn" className=" py-3 px-6 rounded text-lg" onClick={saveAvailableSlots}>Save Slots</button>
           </div>
         </div>
       </div>

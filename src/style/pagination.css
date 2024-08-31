@@ -8,9 +8,9 @@
   width: 100%;
   max-width: 490px;
   margin: 20px auto;
-  background: #e0e0e0;
+  background: white;
   border-radius: 50px;
-  box-shadow: inset 5px 5px 1px #717171, inset -5px -5px 1px #ffffff;
+ 
   display: flex;
   justify-content: space-between;
   padding: 1em 2em;
@@ -55,7 +55,7 @@ button:hover {
 }
 
 #ul .active {
-    background: linear-gradient(90deg, #b8860b, #daa520); /* DarkGoldenRod and GoldenRod colors */
+    background: linear-gradient(-90deg, #003A74, #006AD5); /* DarkGoldenRod and GoldenRod colors */
     color: #fff;
     font-weight: 600;
   }

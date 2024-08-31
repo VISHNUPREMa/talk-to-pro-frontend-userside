@@ -19,6 +19,9 @@ const Console = () => {
     }
   };
 
+  const handleYoutube = () =>{
+    alert("youtube")
+  }
   return (
     <div style={{width:'100vw'}}>
     
@@ -26,16 +29,9 @@ const Console = () => {
         <Navbar />
       </div>
     <div className="dashboard-console">
-      <aside className="sidebar-1-console">
-        <ul className="menu-list">
-          <li className="menu-item" onClick={() => setSelectedMenuItem('DASHBOARD')}>DASHBOARD</li>
-          <li className="menu-item" onClick={() => setSelectedMenuItem('CONTENT')}>CONTENT</li>
-          <li className="menu-item" onClick={() => setSelectedMenuItem('ANALYTICS')}>ANALYTICS</li>
-          <li className="menu-item" onClick={() => setSelectedMenuItem('REVIEWS')}>REVIEWS</li>
-        </ul>
-      </aside>
+      
       <main className="main-content-console">
-        {selectedMenuItem === 'DASHBOARD' && (
+     
           <>
             <div className="profile-analytics">
               <div className="allow-slot-1">
@@ -50,19 +46,17 @@ const Console = () => {
                 <p>Slots: <span>45</span></p>
                 <p>Hours: <span>60.30</span></p>
               </div>
-            </div>
-            {/* <div className="provider-insider">
+          
+            <div className="provider-insider">
               <h2>PROVIDER INSIDER</h2>
               <div className="insider-content">
-                <Youtube size={48} />
+                <Youtube size={98}  onClick={handleYoutube} style={{cursor:'pointer'}}/>
                 <p>Here is the detail demo of how to use "Talk to Pro" as a service provider and earn money...</p>
               </div>
-            </div> */}
+            </div>
+            </div>
           </>
-        )}
-        {selectedMenuItem === 'CONTENT' && <div>Content Section</div>}
-        {selectedMenuItem === 'ANALYTICS' && <div>Analytics Section</div>}
-        {selectedMenuItem === 'REVIEWS' && <div>Reviews Section</div>}
+      
       </main>
     </div>
     </div>

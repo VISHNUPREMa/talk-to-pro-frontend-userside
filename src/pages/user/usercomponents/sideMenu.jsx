@@ -3,18 +3,17 @@ import { X, Home, DollarSign, Bell, CreditCard, Heart, Settings, LogOut, ArrowRi
 import '../../../style/sidemenu.css';
 import { useData } from '../../contexts/userDataContext';
 import { MdAccountBalance } from "react-icons/md";
-
-import {BACKEND_SERVER} from '../../../secrets/secret.js'
+import { BACKEND_SERVER } from '../../../secrets/secret.js';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 const SideMenu = ({ isOpen, toggleSideMenu }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const sideMenuRef = useRef(null);
-  const { user } = useData();
+  const { user, setUser } = useData();
 
   useEffect(() => {
-
-
     const handleClickOutside = (event) => {
       if (sideMenuRef.current && !sideMenuRef.current.contains(event.target)) {
         toggleSideMenu();
@@ -32,27 +31,48 @@ const SideMenu = ({ isOpen, toggleSideMenu }) => {
     };
   }, [isOpen, toggleSideMenu]);
 
-  const handleItemClick = async(content) => {
-    try {
-        if(content === 'Service Provider Console'){
-          navigate('/proconsole')
-            }else if(content === 'Your Bookings'){
-              navigate('/booking')
-            }else if (content === 'Your Transactions'){
-              navigate('/transaction')
-            }else if(content === 'account details'){
-             
-               navigate('/accountdetails')
-            }else if(content === 'Wallet'){
-              navigate('/wallet')
-            }else if(content === 'Your Favourites'){
-              navigate('/favourites')
-            }
-
-        } catch (error) {
-        console.log(error);
+  const handleItemClick = (content) => {
+    switch (content) {
+      case 'Service Provider Console':
+        navigate('/proconsole');
+        break;
+      case 'Your Bookings':
+        navigate('/booking');
+        break;
+      case 'Your Transactions':
+        navigate('/transaction');
+        break;
+      case 'Account Details':
+        navigate('/accountdetails');
+        break;
+      case 'Wallet':
+        navigate('/wallet');
+        break;
+      case 'Your Favourites':
+        navigate('/favourites');
+        break;
+      case 'Logout':
+        Swal.fire({
+          title: 'Are you sure you want to logout?',
+          text: 'You will need to log in again to access your account.',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, logout!',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Clear cookies and local storage
+            document.cookie = 'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            localStorage.removeItem('refreshToken');
+            setUser(null); 
+            navigate('/login');
+          }
+        });
+        break;
+      default:
+        console.log('Unknown menu item');
     }
-    
   };
 
   return (
@@ -64,8 +84,8 @@ const SideMenu = ({ isOpen, toggleSideMenu }) => {
         <li className="side-menu-item" onClick={() => handleItemClick('Your Transactions')}>
           <DollarSign className="menu-icon" /> Your Transactions
         </li>
-        <li className="side-menu-item" onClick={() => handleItemClick('account details')}>
-        <MdAccountBalance className="menu-icon" size={25} /> Account Details
+        <li className="side-menu-item" onClick={() => handleItemClick('Account Details')}>
+          <MdAccountBalance className="menu-icon" size={25} /> Account Details
         </li>
         <li className="side-menu-item" onClick={() => handleItemClick('Wallet')}>
           <CreditCard className="menu-icon" /> Wallet
@@ -77,9 +97,6 @@ const SideMenu = ({ isOpen, toggleSideMenu }) => {
         )}
         <li className="side-menu-item" onClick={() => handleItemClick('Your Favourites')}>
           <Heart className="menu-icon" /> Your Favourites
-        </li>
-        <li className="side-menu-item" onClick={() => handleItemClick('Settings')}>
-          <Settings className="menu-icon" /> Settings
         </li>
         <li className="side-menu-item" onClick={() => handleItemClick('Logout')}>
           <LogOut className="menu-icon" /> Logout
