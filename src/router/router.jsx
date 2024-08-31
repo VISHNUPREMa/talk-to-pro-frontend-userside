@@ -43,23 +43,23 @@ function Routers(){
           <Route path="/forgetpassword" element={<ForgetPasswordEmail />} />
           <Route path="/otp" element={<OtpPage />} />
           <Route path="/forgetpassword/otp" element={<OtpPage />} />
-          <Route path="/" element={<Dashboard><UserHome /></Dashboard>} />
-          <Route path="/profile" element={<Dashboard><ProfileCard/></Dashboard>} />
+          <Route path="/" element={<UserHome />} />
+          <Route path="/profile" element={<ProfileCard/>} />
           <Route path="/newpassword" element={<NewPasswordPage/>} />
           <Route path="/slotbooking" element={<Dashboard><Booking/></Dashboard>} />
           <Route path="/proconsole" element={<Dashboard><Console/></Dashboard>} />
           <Route path="/allocateslot" element={<Dashboard><ServiceProviderBooking/></Dashboard>} />
           <Route path="/booking" element={<Dashboard><UserBooking/></Dashboard>} />
           <Route path="/transaction" element={<Dashboard><UserTransactions/></Dashboard>} />
-           <Route path="/videocall" element={<VideoCall/>} /> 
-           <Route path="/singlenotification" element={<NotificationDetails/>} /> 
-           <Route path="/edit" element={<ProfileEditPage/>} /> 
+           <Route path="/videocall" element={<Dashboard><VideoCall/></Dashboard>} /> 
+           <Route path="/singlenotification" element={<Dashboard><NotificationDetails/></Dashboard>} /> 
+           <Route path="/edit" element={<Dashboard><ProfileEditPage/></Dashboard>} /> 
            <Route path="/search" element={<SearchPage/>} /> 
-           <Route path="/accountdetails" element={<UserProfile/>} /> 
-           <Route path="/invoice" element={<Invoice/>} /> 
+           <Route path="/accountdetails" element={<Dashboard><UserProfile/></Dashboard>} /> 
+           <Route path="/invoice" element={<Dashboard><Invoice/></Dashboard>} /> 
            <Route path="/review" element={<ReviewPage/>} /> 
            <Route path="/wallet" element={<Wallet/>} /> 
-           <Route path="/favourites" element={<Favourites/>} /> 
+           <Route path="/favourites" element={<Dashboard><Favourites/></Dashboard>} /> 
            
 
           
