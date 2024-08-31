@@ -42,7 +42,7 @@ function UserHome() {
   const { searchTerm } = useContext(SearchContext);
 
   useEffect(() => {
-    const userid = user.userid;
+    const userid = user?.userid;
     socket.emit('on', { userid });
 
     socket.on('call-request', (data) => {

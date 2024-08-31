@@ -18,7 +18,7 @@ import Swal from 'sweetalert2';
 
 const Navbar = ({callData}) => {
   const { setUser: setGlobalUser ,user} = useData();
-const username = user.username
+const username = user?.username
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
@@ -116,12 +116,12 @@ const username = user.username
           />
           {callData &&<FaVideo size={30} style={{marginLeft:'25px'}}  onClick={handleVideoCall} />}
           {showNotification&&<UserNotification/>}
-         <IoNotifications style={{ fontSize: '24px', marginLeft: '25px', cursor:'pointer' }} onClick={handleNotification} />
-          <div className="profile-icon">
+         {user &&<IoNotifications style={{ fontSize: '24px', marginLeft: '25px', cursor:'pointer' }} onClick={handleNotification} />}
+          {user && <div className="profile-icon">
             <img src="../../../../profile.png" alt="Profile" className="profile-pic" />
             
-          </div>
-          <p>{username}</p>
+          </div>}
+          <p>{username ? username : null }</p>
           {isAuthenticated ? (
             <button className="logout-btn" onClick={handleLogout}>
               Logout

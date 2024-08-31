@@ -13,7 +13,7 @@ const SideMenu = ({ isOpen, toggleSideMenu }) => {
   const { user } = useData();
 
   useEffect(() => {
-    console.log("user: ", user); 
+
 
     const handleClickOutside = (event) => {
       if (sideMenuRef.current && !sideMenuRef.current.contains(event.target)) {
@@ -70,7 +70,7 @@ const SideMenu = ({ isOpen, toggleSideMenu }) => {
         <li className="side-menu-item" onClick={() => handleItemClick('Wallet')}>
           <CreditCard className="menu-icon" /> Wallet
         </li>
-        {user.isServiceProvider && (
+        {user?.isServiceProvider && (
           <li className="side-menu-item" onClick={() => handleItemClick('Service Provider Console')}>
             <ArrowRight className="menu-icon" /> Service Provider Console
           </li>

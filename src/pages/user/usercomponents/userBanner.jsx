@@ -104,7 +104,7 @@ export function UserBanner() {
           If you are a professional in any field, you have the opportunity to earn money by renting your free time. Build your personal brand through that.
         </p>
         <hr className="border-t border-gray-700 my-4" />
-        {user.isServiceProvider === false ? (
+        {user?.isServiceProvider === false ? (
           <a onClick={handleRegister} className="btn btn-outline-light border border-white text-white py-2 px-4 rounded-md hover:bg-white hover:text-gray-900">
             Register now
           </a>
