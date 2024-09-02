@@ -1,43 +1,119 @@
-.profile-card {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .language-tag, .skill-tag {
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin-right: 5px;
-  }
-  
-  .language-tag {
-    color: #333;
-  }
-  
-  .skill-tag {
-    color: #000;
-  }
-  
-  .profile-profession, .profile-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .profile-profession span, .profile-skills span {
-    background-color: #f5f5f5;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.875rem;
-  }
-  .navbar-fixed {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+/* profilCard.css */
+
+.profile-card-container {
+  width: 100vw;
+  padding-top: 50px; /* Adjusted for Navbar */
 }
-  
+
+.profile-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.profileCard-image {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.profileCard-image-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-details {
+  text-align: center;
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.profile-review,
+.profile-followers,
+.profile-profession,
+.profile-description {
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.profile-languages,
+.profile-skills {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.language-tag,
+.skill-tag {
+  background-color: #f0f0f0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.profile-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.book-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.follow-button,
+.linkedin-button,
+.review-button {
+  background-color: #000;
+  color: #fff;
+}
+
+.profile-button:hover {
+  opacity: 0.8;
+}
+
+.button-icon {
+  margin-right: 8px;
+}
+
+/* Media Queries for Responsiveness */
+@media (min-width: 768px) {
+  .profile-card-inner {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .profile-details {
+    text-align: left;
+  }
+
+  .profileCard-image {
+    max-width: 400px;
+  }
+}
